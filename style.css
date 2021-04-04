@@ -11,8 +11,7 @@ textarea {
   color: black;
   border-left: 1px solid black;
   padding: 10px;
-  width: 100%;
-  height: 100%;
+
 }
 
 .jumbotron {
@@ -21,17 +20,18 @@ textarea {
   color: blueviolet;
   border-radius: 0;
   border-bottom: 10px solid black;
-}
-
-.description {
-  white-space: pre-wrap;
+  background-image: url("/Users/avi/Desktop/github/Week5/02-Homework/Assets/polkadots photo.jpeg");
+  background-size: 300px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .time-block {
   text-align: center;
   border-radius: 15px;
 }
-
+.description {
+  white-space: pre-wrap;
+}
 .row {
   white-space: pre-wrap;
   height: 80px;
@@ -66,9 +66,8 @@ textarea {
   background-color: #06aed5;
   color: white;
 }
-
-.saveBtn:hover {
+.saveBtn i:hover{
   font-size: 20px;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
+
 }

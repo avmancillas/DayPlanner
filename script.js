@@ -1,101 +1,71 @@
-var hourlytime = [
-    {id: "0", hour: "09", time: "09", meridiem: "am", reminder: "" },
-    {id: "1", hour: "10", time: "10", meridiem: "am", reminder: "" },
-    {id: "2", hour: "11", time: "11", meridiem: "am", reminder: "" },
-    {id: "3", hour: "12", time: "12", meridiem: "am", reminder: "" },
-    {id: "4", hour: "01", time: "13", meridiem: "pm", reminder: "" },
-    {id: "5", hour: "02", time: "14", meridiem: "pm", reminder: "" },
-    {id: "6", hour: "03", time: "15", meridiem: "pm", reminder: "" },
-    {id: "7", hour: "04", time: "16", meridiem: "pm", reminder: "" },
-    {id: "8", hour: "05", time: "17", meridiem: "pm", reminder: "" }
-]
+//current date and time header setting
+var currentHeaderDate = moment().format("dddd,MMM Do YYYY");
+$("#currentDay").append(currentHeaderDate);
 
-function getHeaderDate() {
-    var currentHeaderDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-    $("#currentDay").text(currentHeaderDate);
-}
-getHeaderDate();
+var currentHeaderTime = moment().format("LT");
+$("#currentTime").append(currentHeaderTime);
 
-function saveReminders() {
-    localStorage.setItem("hourlytime", JSON.stringify(hourlytime));
-}
+var now = new Date ().getHours();
 
-function displayReminders() {
-    hourlytime.forEach(function (_thisHour) {
-        $(`#${_thisHour.id}`).val(_thisHour.reminder);
+//set to local storage
+$(document).ready(function(){
+    $(".saveBtn").on("click", function() {
+        console.log(this);
+        var plannertext =$(this).siblings(".description").val();
+        var plannertime =$(this).parent().attr("id");
+
+        localStorage.setItem(plannertime,plannertext);
     })
-}
+    //get hour 9 from local storage
+    $("#hour 9 .description").val(localStorage.getItem("hour 9"));
+    //get hour 10 from local storage
+    $("#hour 10 .description").val(localStorage.getItem("hour 10"));
+    //get hour 11 from local storage
+    $("#hour 11 .description").val(localStorage.getItem("hour 11"));
+    //get hour 12 from local storage
+    $("#hour 12 .description").val(localStorage.getItem("hour 12"));
+    //get hour 1 from local storage
+    $("#hour 1 .description").val(localStorage.getItem("hour 1"));
+    //get hour 2 from local storage
+    $("#hour 2 .description").val(localStorage.getItem("hour 2"));
+    //get hour 3 from local storage
+    $("#hour 3 .description").val(localStorage.getItem("hour 3"));
+    //get hour 4 from local storage
+    
+    $("#hour 4 .description").val(localStorage.getItem("hour 4"));
+    //get hour 5 from local storage
+    $("#hour 5 .description").val(localStorage.getItem("hour 5"));
+    
+    
+    //setting for past,present,future 
+    function timeTracker() {
+        var currentTime = moment().hour();
+        
+        $(".time-block").each(function(){
+            var timeSection = parseInt($(this).attr("id").split("hour")[1]);
 
+            if (timeSection < currentTime) {
+                $(this).addClass("past");
+                $(this).removeClass("future");
+                $(this).removeClass("present");
+                
+            }
 
-
-function init() {
-    var storedtime = JSON.parse(localStorage.getItem("hourlytime"));
-
-    if (storedtime) {
-        hourlytime = storedtime;
+            else if (timeSection === currentTime){
+                $(this).addClass("present");
+                $(this).removeClass("past");
+                $(this).removeClass("future");
+               
+            }
+            else{
+                $(this).addClass("future");
+                $(this).removeClass("present");
+                $(this).removeClass("past");
+                
+            }
+            
+        })
     }
+    timeTracker();
 
-    saveReminders();
-    displayReminders();
-}
-
-hourlytime.forEach(function(thisHour) {
-    
-     var hourRow = $("<form>").attr({
-       "class": "row"
-    });
-    $(".container").append(hourRow);
-
-  
-    var hourField = $("<div>")
-        .text(`${thisHour.hour}${thisHour.meridiem}`)
-        .attr({
-            "class": "col-md-2 hour"
-    });
-
-    
-    var hoursection = $("<div>")
-        .attr({
-            "class": "col-md-9 description p-0"
-        });
-    var schedulerData = $("<textarea>");
-    hoursection.append(schedulerData);
-    schedulerData.attr("id", thisHour.id);
-    if (thisHour.time < moment().format("HH")) {
-        schedulerData.attr ({
-            "class": "past", 
-        })
-    } else if (thisHour.time === moment().format("HH")) {
-        schedulerData.attr({
-            "class": "present"
-        })
-    } else if (thisHour.time > moment().format("HH")) {
-        schedulerData.attr({
-            "class": "future"
-        })
-    }
-
-    
-    var saveButton = $("<i class='far fa-save fa-lg'></i>")
-    var savePlanner = $("<button>")
-        .attr({
-            "class": "col-md-1 saveBtn"
-    });
-    savePlanner.append(saveButton);
-    hourRow.append(hourField, hoursection, savePlanner);
-})
-
-
-init();
-
-
-
-$(".saveBtn").on("click", function() {
-    event.preventDefault();
-    console.log(this);
-    var text =$(this).siblings(".description").val();
-    var time =$(this).parent().attr("id");
-
-    localStorage.setItem(time,text);
-    
 })
