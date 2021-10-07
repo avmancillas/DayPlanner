@@ -1,5 +1,28 @@
-# Week5HW
-This is week 5 homework. We had to create a 9am-5pm scheduler application.
-![screenshot 1](/Develop/Screenshot1.png)
-![screenshot 2](/Develop/Screenshot2.png)
-[hosted-url] (https://avmancillas.github.io/Week5HW/)
+# DayPlanner
+
+ # **License:**
+  ### MIT
+  ![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+  # **Table of Contents**
+
+  *[Description](#description)
+
+  *[Installation](#installation)
+
+  *[Usage](#usage)
+
+  *[Guidelines](#guidelines)
+
+  
+  # **Description:**
+  ### This calendar application allows a user to save events for each hour of the day.
+ 
+   
+  
+  # **Usage:**
+  ### This project runs in the browser and uses HTML and CSS powered by jQuery.
+  
+  # **Links:** 
+  ### (https://avmancillas.github.io/Week5HW/)  
+
